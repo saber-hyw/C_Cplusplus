@@ -4,6 +4,8 @@
 #include <string.h>
 #include <errno.h>
 #include <sys/msg.h>
+#include <sys/types.h>
+#include <sys/ipc.h>
  
 struct msg_st
 {
@@ -17,15 +19,17 @@ int main()
 	int msgid = -1;
 	struct msg_st data;
 	long int msgtype = 0; //注意1
- 
+
+	key_t key;
 	//建立消息队列
-	msgid = msgget((key_t)1234, 0666 | IPC_CREAT);
+    key=123456;
+    msgid = msgget(key, 0666 | IPC_EXCL | IPC_CREAT);
+	printf("msgid = %d \n", msgid);
 	if(msgid == -1)
 	{
 		fprintf(stderr, "msgget failed with error: %d\n", errno);
 		exit(EXIT_FAILURE);
 	}
-    
 	//从队列中获取消息，直到遇到end消息为止
 	while(running)
 	{

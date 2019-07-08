@@ -1,3 +1,10 @@
+
+/* 
+ * By Yongwu Han
+ * 使用pipe 来实现父子进程的双向通信
+ *  
+*/
+
 #include <unistd.h>
 #include <stdio.h>
  

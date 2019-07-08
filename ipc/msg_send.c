@@ -1,15 +1,33 @@
+
+/**
+ * By Yongwu Han
+ * 
+ * 程序实现的功能: 向消息队列里发送消息
+ * 程序思路:
+ * (1) 首先，定义消息结构
+ * (2) 使用msgget() API 建立消息队列
+ * (3) 使用msgsnd() API 向消息队列里面发送消息
+ */
+
+
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <sys/msg.h>
 #include <errno.h>
+
+// 以下是message queue 所用到的系统头文件
+#include <sys/msg.h>
+#include <sys/types.h>
+#include <sys/ipc.h>
  
 #define MAX_TEXT 512
+
+// 消息的数据结构
 struct msg_st
 {
 	long int msg_type;
-	char text[MAX_TEXT];
+	char text[MAX_TEXT];  // MAX_TEXT 即 msg_sz: 是不包括长整型消息类型成员变量的长度。
 };
 
 int main()

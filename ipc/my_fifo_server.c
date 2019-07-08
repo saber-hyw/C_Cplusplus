@@ -1,3 +1,17 @@
+/**
+ * By Yongwu Han
+ * 
+ * fifo:命名管道
+ * 实现的功能: 不相干的两个进程之间，使用FIFO通信  (server 先启动)
+ * 程序思路:
+ * (1) 首先使用API mkfifo() 创建FIFO文件
+ * (2) 对FIFO文件进行错误检查
+ * (3) 使用open(fifo, Read|write)
+ * (4) 最后进行读写数据
+ * 
+ */
+
+
 #include <stdio.h>
 #include <errno.h>
 #include <sys/types.h>
@@ -48,8 +62,8 @@ int main()
     printf("create fifo success\n");
  
     /* 要注意open的顺序 */
-    readfd = open(FIFO2, O_RDONLY, 0);
-    writefd = open(FIFO1, O_WRONLY, 0);
+    readfd = open(FIFO2, O_RDONLY, 0);  // 读
+    writefd = open(FIFO1, O_WRONLY, 0); // 写
     printf("open fifo success\n");
     
     /* 让FIFO在进程结束后自动删除 */

@@ -19,8 +19,7 @@ private:
       Singleton();
       ~Singleton();      
 public:
-      static Singleton* GetInstance();   // 这里应该是 定义一个类的函数指针;
-
+      static Singleton* GetInstance();   // 定义一个返回指针变量的函数
 private:
       static Singleton *pInstance;
 };

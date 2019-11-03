@@ -1,3 +1,11 @@
+/**
+ * 程序目的：为了熟悉operator操作符重载
+ * (1) 函数只是单纯的加小时
+ * (2) 重载 操作符‘*’，*操作符两边的数据类型不一致
+ */
+
+
+
 #include <iostream>
 
 using std::cout;
@@ -7,11 +15,10 @@ using std::endl;
 class Time
 {
 private:
-    /* data */
     int hours;
     int minutes;
 public:
-    Time(/* args */);
+    Time();
     Time(int h, int m = 0);
     ~Time();
 
@@ -68,7 +75,7 @@ Time Time::Sum(const Time &T) const {
     sum.minutes = minutes + T.minutes;  // 对象已有的时间+新加的时间
     sum.hours = hours + T.hours + sum.minutes / 60;
     sum.minutes %= 60;
-    return sum; // 函数返回临时对象，意味着程序将在删除sum对象之前构造它的拷贝，调用函数将得到该拷贝；
+    return sum;         // 函数返回临时对象，意味着程序将在删除sum对象之前构造它的拷贝，调用函数将得到该拷贝；
 }
 
 Time &Time::sum_1(const Time &T) {
